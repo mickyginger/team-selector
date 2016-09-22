@@ -6,7 +6,7 @@ const ejsLayouts = require('express-ejs-layouts');
 const moment = require('moment');
 const teams = require('./lib/teams');
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
