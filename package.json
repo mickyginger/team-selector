@@ -14,6 +14,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node app",
     "postinstall": "bower install && gulp"
   },
   "author": "Mike Hayden <mickyginger@gmail.com> (https://github.com/mickyginger)",
