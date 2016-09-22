@@ -1,0 +1,22 @@
+<% teams.forEach((team, idx) => { %>
+  <% if(idx%5 === 0) { %>
+    <div class="row">
+  <% } %>
+  <table class="table-striped col-md-2">
+    <thead>
+      <tr>
+        <th><%= idx < 5 ? 'A' : 'B' %><%= (idx % 5) + 1 %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% team.forEach(student => { %>
+        <tr>
+          <td><%= student %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <% if(idx%5 === 4 || idx === teams.length-1) { %>
+    </div>
+  <% } %>
+<% }) %>

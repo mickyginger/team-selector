@@ -1,0 +1,21 @@
+{
+  "name": "team-selector",
+  "version": "1.0.0",
+  "description": "An app to split a group of students into teams of 3",
+  "main": "app.js",
+  "dependencies": {
+    "bower": "^1.7.9",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "express-ejs-layouts": "^2.2.0",
+    "gulp": "^3.9.1",
+    "moment": "^2.15.1",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "postinstall": "bower install && gulp"
+  },
+  "author": "Mike Hayden <mickyginger@gmail.com> (https://github.com/mickyginger)",
+  "license": "ISC"
+}
