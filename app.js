@@ -19,13 +19,17 @@ app.use(express.static('public'));
 let currentTeams = [];
 let lastShuffleWeek = 0;
 
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   let now = moment();
   if(currentTeams.length === 0 || lastShuffleWeek < now.week()) {
     currentTeams = teams.generate();
     lastShuffleWeek = now.week();
   }
   return res.render('index', { teams: currentTeams });
+});
+
+app.get("*", (req, res) => {
+  res.redirect('/');
 });
 
 app.listen(port, () => { console.log("Express is listening on port " + port); });
