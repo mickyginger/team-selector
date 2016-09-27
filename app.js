@@ -3,10 +3,14 @@ const app = express();
 
 const morgan = require('morgan');
 const ejsLayouts = require('express-ejs-layouts');
-const moment = require('moment');
+const mongoose = require('mongoose');
+
 const teams = require('./lib/teams');
 
+const dbUri = require('./config/database').uri;
 const port = process.env.PORT || 8000;
+
+mongoose.connect(dbUri);
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -16,16 +20,13 @@ app.use(morgan('dev'));
 app.use(ejsLayouts);
 app.use(express.static('public'));
 
-let currentTeams = [];
-let lastShuffleWeek = 0;
-
 app.get("/", (req, res) => {
-  let now = moment();
-  if(currentTeams.length === 0 || lastShuffleWeek < now.week()) {
-    currentTeams = teams.generate();
-    lastShuffleWeek = now.week();
-  }
-  return res.render('index', { teams: currentTeams });
+
+  return teams.get(function(err, teams){
+    if(err) return res.status(500).end();
+    return res.render('index', { teams: teams.teams });
+  });
+
 });
 
 app.get("*", (req, res) => {
